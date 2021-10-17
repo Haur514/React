@@ -12,7 +12,7 @@ const App = (props) => {
   return (
     <div>
       <span className='shopping-list'>
-        <h1 id='title'>Shopping List for JuiceClub</h1>
+        <h1 id='title'>Kusumoto Lab Shopping</h1>
       </span>
       <span>
         <h1 className='JuiceClub'><ShoppingList name="Juice Club" /></h1>
@@ -59,7 +59,12 @@ const ShoppingList = (props) => {
   return (
     <div>
       <span>
-        <Board />
+        <span id="MenuList">
+          <JuiceClub />
+          <FoodClub />
+          <Data />
+          <PurchaseHistory />
+        </span >
       </span>
     </div>
   );
@@ -69,37 +74,97 @@ const Aquare = (props) => {
 
 }
 
-const Board = (props) => {
-  const renderSquare = (i, name) => {
-    return <Square name={name} />;
-  };
-
-
-  return (
-    <span id="merchandiseList">
-      {renderSquare(0, "Cora")}
-      {renderSquare(1, "Soda")}
-      {renderSquare(2, "GoGotea")}
-    </span >
-  );
-}
-
-const Square = (props) => {
+const Icon = (props) => {
   const srcs = new Map()
   srcs.set('Cora', Cora)
   srcs.set('Soda', Soda)
   srcs.set('GoGotea', GoGotea)
 
   return (
+    <div className='IconBase'>
+      <img src={srcs.get(props.name)} className="juiceIcon" />
+    </div>
+  )
+}
+
+const JuiceClub = (props) => {
+  return (
     <div className='merchandiseButton'>
       <div className="square" onClick={() => alert("Get " + props.name + " 100yen")}>
-        <span className='merchandise'>
-          {props.name}
+        <div className='merchandiseLabel'>
+          JuiceClub
+        </div>
+        <span>
+          <Icon name='Cora' />
+          <Icon name='Soda' />
+          <Icon name='GoGotea' />
         </span>
-        <img src={srcs.get(props.name)} className="juiceIcon" />
       </div>
     </div>
   );
+}
+
+const Data = (props) => {
+  return (
+    <div className='merchandiseButton'>
+      <div className="square" >
+        <div className='merchandiseLabel'>
+          Data
+        </div>
+        <span>
+
+        </span>
+      </div>
+    </div>
+  );
+}
+
+const FoodClub = (props) => {
+  return (
+    <div className='merchandiseButton'>
+      <div className="square" onClick={() => alert("Get " + props.name + " 100yen")}>
+        <div className='merchandiseLabel'>
+          FoodClub
+        </div>
+        <span>
+
+        </span>
+      </div>
+    </div>
+  );
+}
+
+const PurchaseHistory = (props) => {
+  return (
+    <div className="PurchaseHistory">
+      <div className='merchandiseLabel'>
+        PurchaseHistory
+      </div>
+      <div>
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+        <History />
+      </div>
+    </div>
+  );
+}
+
+const History = (props) => {
+  return (
+    <div className="History">
+      2021/10/17 15:23 80yen
+    </div>
+  )
 }
 
 export default App;
