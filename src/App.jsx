@@ -11,22 +11,56 @@ const App = (props) => {
 
   return (
     <div>
-      <h1><ShoppingList name="dadada" /></h1>
+      <span className='shopping-list'>
+        <h1 id='title'>Shopping List for JuiceClub</h1>
+      </span>
+      <span>
+        <h1 className='JuiceClub'><ShoppingList name="Juice Club" /></h1>
+        <h1><Members /></h1>
+      </span>
+    </div>
+  );
+};
+
+const Members = (props) => {
+  return (
+    <div className='MembersList'>
+      <MembersPartation name='B4' />
+      <Member name='Haruka Yoshioka' />
+      <MembersPartation name='M1' />
+      <Member name='Takaichi' />
+      <MembersPartation name='Other' />
+      <Member name='HogeHoge' />
+      <Member name='PiyoPiyo' />
+      <Member name='PhonePhone' />
+      <Member name='Vim < Emacs' />
+      <Member name='Turing Complete' />
+    </div>
+  );
+};
+
+const Member = (props) => {
+  return (
+    <div className='MembersButton' onClick={() => alert(props.name + "is selected.")}>
+      < p className='MemberName' > {props.name}</p >
+    </div >
+  );
+};
+
+const MembersPartation = (props) => {
+  return (
+    <div>
+      <p className='MembersPartation'>{props.name}</p>
     </div>
   );
 };
 
 const ShoppingList = (props) => {
   return (
-    <div className="shopping-list">
-      <h1>Shopping List for {props.name}</h1>
-      <Buttonh value={0} />
-      <Board />
-      <ul>
-        <li>Instagram</li>
-        <li>WhatsApp</li>
-        <li>Oculus</li>
-      </ul>
+    <div>
+      <span>
+        <Board />
+      </span>
     </div>
   );
 };
@@ -35,31 +69,18 @@ const Aquare = (props) => {
 
 }
 
-const Buttonh = (props) => {
-  const [count, setCount] = useState(0);
-  return (
-    <button className="square" onClick={() => setCount(count + 1)}>
-      {count}
-    </button >
-  );
-};
-
 const Board = (props) => {
   const renderSquare = (i, name) => {
     return <Square name={name} />;
   };
 
-  const [status] = useState('Next player: X');
 
   return (
-    <div>
-      <div className="status">{status}</div>
-      <div className="board-row">
-        {renderSquare(0, "Cora")}
-        {renderSquare(1, "Soda")}
-        {renderSquare(2, "GoGotea")}
-      </div>
-    </div>
+    <span id="merchandiseList">
+      {renderSquare(0, "Cora")}
+      {renderSquare(1, "Soda")}
+      {renderSquare(2, "GoGotea")}
+    </span >
   );
 }
 
@@ -70,11 +91,13 @@ const Square = (props) => {
   srcs.set('GoGotea', GoGotea)
 
   return (
-    <div>
-      <button className="square" onClick={() => alert("Get " + props.name + " 100yen")}>
-        {props.name}
-      </button>
-      <img src={srcs.get(props.name)} width='100' alt="icon" />
+    <div className='merchandiseButton'>
+      <div className="square" onClick={() => alert("Get " + props.name + " 100yen")}>
+        <span className='merchandise'>
+          {props.name}
+        </span>
+        <img src={srcs.get(props.name)} className="juiceIcon" />
+      </div>
     </div>
   );
 }
